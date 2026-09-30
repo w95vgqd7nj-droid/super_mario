@@ -8,19 +8,15 @@ LinuxControlSettings::LinuxControlSettings(const int height, const int width)
 : height(height), width(width) {}
 
 void LinuxControlSettings::init() {
-	/*initscr();
-	curs_set(0);
+	initscr();
+
+	ESCDELAY = 0;
+
+	cbreak();
 	noecho();
+	keypad(stdscr, TRUE);
 	nodelay(stdscr, TRUE);
 
-	getmaxyx(stdscr, height, width);*/
-	
-    initscr();
-    cbreak();
-    noecho();
-    keypad(stdscr, TRUE);
-    nodelay(stdscr, TRUE);	
-	
 	curs_set(0);
 	getmaxyx(stdscr, height, width);
 }

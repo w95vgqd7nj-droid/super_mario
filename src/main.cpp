@@ -56,7 +56,7 @@ int main() {
 	#elif defined(LINUX_CONSOLE)
 		control_settings = new biv::LinuxControlSettings(map_height, map_weight);
 		keyboard = new biv::LinuxKeyboard();
-		frame_delay = std::chrono::milliseconds(50);
+		frame_delay = std::chrono::milliseconds(16);
 	#endif
 	
 	control_settings->init();
