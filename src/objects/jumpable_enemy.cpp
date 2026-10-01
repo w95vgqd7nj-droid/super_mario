@@ -1,31 +1,26 @@
-#include "enemy.hpp"
+#include "jumpable_enemy.hpp"
 
-namespace biv {
-    class JumpableEnemy : public RectMapMovableAdapter, public Movable, public Collisionable {
-    public:
-        JumpableEnemy(const Coord& top_left, const int width, const int height)
-            : RectMapMovableAdapter(top_left, width, height) {
-            vspeed = 0;
-            hspeed = 0.1; //slower than enemy
-        }
+using biv::JumpableEnemy;
 
-        Rect get_rect() const noexcept override { return {top_left, width, height}; }
-        Speed get_speed() const noexcept override { return {vspeed, hspeed}; }
+JumpableEnemy::JumpableEnemy(const Coord& top_left, const int width, const int height)
+    : RectMapMovableAdapter(top_left, width, height) {
+    vspeed = 0;
+    // Враг прыгает НА МЕСТЕ, горизонтальная скорость равна нулю!
+    hspeed = 0;
+}
 
-        void process_mario_collision(Collisionable* mario) noexcept override {
-            if (mario->get_speed().v > 0) { kill(); } else { mario->kill(); }
-        }
+biv::Rect JumpableEnemy::get_rect() const noexcept { return {top_left, width, height}; }
+biv::Speed JumpableEnemy::get_speed() const noexcept { return {vspeed, hspeed}; }
 
-        void process_horizontal_static_collision(Rect* obj) noexcept override {
-            hspeed = -hspeed;
-        }
+void JumpableEnemy::process_mario_collision(Collisionable* mario) noexcept {
+    if (mario->get_speed().v > 0) { kill(); } else { mario->kill(); }
+}
 
-        void process_vertical_static_collision(Rect* obj) noexcept override {
-            //jumping by a touch of the floor
-            if (vspeed > 0) {
-                top_left.y -= vspeed;
-                vspeed = -1.2;        //jump power
-            }
-        }
-    };
+void JumpableEnemy::process_horizontal_static_collision(Rect* obj) noexcept {}
+
+void JumpableEnemy::process_vertical_static_collision(Rect* obj) noexcept {
+    if (vspeed > 0) {
+        top_left.y -= vspeed;
+        vspeed = -1.0; // Прыжок вверх
+    }
 }
