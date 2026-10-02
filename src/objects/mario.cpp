@@ -40,3 +40,18 @@ void Mario::process_vertical_static_collision(Rect* obj) noexcept {
 	}
 	vspeed = 0;
 }
+
+void Mario::process_moving_collision(MovingCollisionable* platform) noexcept {
+	if (this->vspeed >= 0) {
+		double mario_bottom = this->top_left.y + this->height;
+
+		if (auto* platform_rect = dynamic_cast<biv::Rect*>(platform)) {
+			double platform_y = platform_rect->get_top();
+
+			if (mario_bottom >= platform_y && mario_bottom <= platform_y + 1.5) {
+				this->top_left.x += platform->get_speed().h;
+			}
+		}
+	}
+}
+

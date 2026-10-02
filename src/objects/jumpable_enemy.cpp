@@ -20,6 +20,6 @@ void JumpableEnemy::process_horizontal_static_collision(Rect* obj) noexcept {}
 void JumpableEnemy::process_vertical_static_collision(Rect* obj) noexcept {
     if (vspeed > 0) {
         top_left.y -= vspeed;
-        vspeed = -1.0; // Прыжок вверх
+        vspeed = -1.0;
     }
 }

@@ -121,6 +121,7 @@ void ConsoleUIFactory::create_moving_ship(
     game->add_static_obj(ship);
     game->add_collisionable(ship);
     game_map->add_obj(ship);
+    game->add_moving_collisionable(ship);
 }
 
 biv::GameMap* ConsoleUIFactory::get_game_map(const int height, const int width) {

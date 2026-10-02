@@ -11,6 +11,7 @@
 #include "mario.hpp"
 #include "movable.hpp"
 #include "rect.hpp"
+#include "moving_collisionable.hpp"
 
 namespace biv {
 	class Game {
@@ -19,6 +20,10 @@ namespace biv {
 			std::vector<Rect*> static_objs;
 			std::vector<Collisionable*> collisionable_objs;
 			std::vector<Movable*> movable_objs;
+			std::vector<MovingCollisionable*> moving_collisionables;
+
+		public:
+			void add_moving_collisionable(MovingCollisionable* obj);
 			
 			Mario* mario = nullptr;
 			

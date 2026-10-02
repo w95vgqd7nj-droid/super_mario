@@ -1,14 +1,11 @@
 #pragma once
 
-#include "ship.hpp"
 #include "movable.hpp"
-#include "collisionable.hpp"
+#include "map_movable.hpp"
+#include "moving_collisionable.hpp"
 
 namespace biv {
-    class MovingShip : public Ship, public Movable, public Collisionable {
-    private:
-        double left_bound;
-        double right_bound;
+    class MovingShip : public Movable, public MapMovable, public MovingCollisionable {
     public:
         MovingShip(const Coord& top_left, const int width, const int height);
 
@@ -21,5 +18,8 @@ namespace biv {
 
         void move_vertically() noexcept override;
         void move_horizontally() noexcept override;
+
+        void move_map_left() noexcept override;
+        void move_map_right() noexcept override;
     };
 }

@@ -10,10 +10,11 @@ namespace biv {
 
         char get_brush() const noexcept override;
 
-        int get_left() const noexcept override { return static_cast<int>(top_left.x); }
-        int get_right() const noexcept override { return static_cast<int>(top_left.x) + width; }
-        int get_top() const noexcept override { return static_cast<int>(top_left.y); }
-        int get_bottom() const noexcept override { return static_cast<int>(top_left.y) + height; }
-        int get_height() const noexcept override { return height; }
+        int get_left() const noexcept override { return static_cast<int>(this->get_rect().get_left()); }
+        int get_right() const noexcept override { return static_cast<int>(this->get_rect().get_right()); }
+        int get_top() const noexcept override { return static_cast<int>(this->get_rect().get_top()); }
+        int get_bottom() const noexcept override { return static_cast<int>(this->get_rect().get_bottom()); }
+
+        int get_height() const noexcept override { return static_cast<int>(this->get_rect().get_bottom() - this->get_rect().get_top()); }
     };
 }
