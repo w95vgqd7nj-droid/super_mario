@@ -5,7 +5,6 @@ using biv::JumpableEnemy;
 JumpableEnemy::JumpableEnemy(const Coord& top_left, const int width, const int height)
     : RectMapMovableAdapter(top_left, width, height) {
     vspeed = 0;
-    // Враг прыгает НА МЕСТЕ, горизонтальная скорость равна нулю!
     hspeed = 0;
 }
 

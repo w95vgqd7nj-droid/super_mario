@@ -25,7 +25,6 @@ void FlyableEnemy::move_vertically() noexcept {}
 
 void FlyableEnemy::move_horizontally() noexcept {
     top_left.x += hspeed;
-    // Карта шириной 200. Летим от самого начала до самого конца.
     if (top_left.x > 195 || top_left.x < 5) {
         hspeed = -hspeed;
     }

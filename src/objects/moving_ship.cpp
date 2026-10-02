@@ -32,7 +32,6 @@ void MovingShip::process_mario_collision(Collisionable* mario) noexcept {
 void MovingShip::process_horizontal_static_collision(Rect* obj) noexcept {
     if (static_cast<Rect*>(this) == obj) return;
 
-    // Простой и надежный отскок от стопоров
     hspeed = -hspeed;
     top_left.x += hspeed;
 }
